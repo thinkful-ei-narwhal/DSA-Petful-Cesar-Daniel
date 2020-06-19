@@ -20,6 +20,10 @@ module.exports = {
   },
 
   dequeue(type) {
-    // Remove a pet from the queue.
+    if (type === 'cat') {
+      pets.cats.dequeue();
+    } else if (type === 'dog') {
+      pets.dogs.dequeue();
+    }
   }
 };

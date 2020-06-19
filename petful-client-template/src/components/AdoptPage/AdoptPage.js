@@ -9,6 +9,15 @@ export class AdoptPage extends Component {
 
   static contextType = UserContext;
 
+  componentDidMount() {
+
+    const {people, handleDeletePerson} = this.context;
+
+    while(people.last) {
+      setTimeout(handleDeletePerson(), 5000)
+    }
+  }
+
   render() {
 
     return (

@@ -14,6 +14,7 @@ export class Root extends Component {
     cats: new Queue(),
     dogs: new Queue(),
     people: new Queue(),
+    na: {value: '', touched: false}
   }
 
   componentDidMount() {
@@ -45,8 +46,28 @@ export class Root extends Component {
           np = np.next
         }
       })
-
   }
+
+  setName = (n) => {
+    this.setState({ na: { value: n, touched: true } });
+  }
+
+  validateName = () => {
+    const n = this.state.na.value;
+    if (!n) {
+      return 'name is required';
+    } 
+  }
+
+  
+
+  handleUpdatePeople = () => {
+    const n = this.state.na.value;
+    apiService.postPerson(n)
+      .then((people) => this.setState(this.state.people.enqueue(people.last)));
+  }
+
+
 
   render() {
     return (
@@ -54,6 +75,12 @@ export class Root extends Component {
         cats: this.state.cats,
         dogs: this.state.dogs,
         people: this.state.people,
+        name: this.state.na,
+        validateName: this.validateName,
+        setName: this.setName,
+        handleUpdatePeople: this.handleUpdatePeople,
+        handleAdoptAnimal: this.handleAdoptAnimal,
+        handleDeletePerson: this.handleDeletePerson
       }}>
         <Fragment>
           <main>

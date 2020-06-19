@@ -7,7 +7,12 @@ export class Cat extends Component {
   static contextType = UserContext;
 
   render() {
-    const current = this.context.cats.first.data;
+
+    const {
+      cats,
+      handleAdoptAnimal
+    } = this.context;
+    const current = cats.first.data;
 
     return (
       <div>
@@ -19,7 +24,11 @@ export class Cat extends Component {
         <p>Age: {`${current.age}`}</p>
         <p>Breed: {`${current.breed}`}</p>
         <p>{`${current.name}`}'s Story: {`${current.story}`}</p>
-        <button>Adopt Me!</button>
+        <button
+        onClick={(e) => {
+          e.preventDefault();
+          handleAdoptAnimal('cat');}}
+        >Adopt Me!</button>
       </div>
     )
   }

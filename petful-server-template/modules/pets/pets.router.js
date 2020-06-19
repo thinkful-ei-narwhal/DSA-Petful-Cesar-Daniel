@@ -14,12 +14,13 @@ router.get('/', (req, res) => {
     });
   }
   return res.json(pets);
-   
-   
 });
 
 router.delete('/', json, (req, res) => {
-  // Remove a pet from adoption.
+  const {type} = req.params;
+  Pets.dequeue(type);
+
+  return res.status(204).end();
 });
 
 module.exports = router;

@@ -18,7 +18,22 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', json, (req, res) => {
-  // Add a new person to the queue.
+  const {name} = req.body;
+  const newPerson = {name};
+  for (const [key, value] of Object.entries(newPerson))
+  // eslint-disable-next-line eqeqeq
+    if (value == null) {
+      return res.status(400).json({error: `Missing '${key}' in request body`});
+    }
+  const people = People.enqueue(newPerson);
+  res.status(201).json(people);
+
+});
+
+router.delete('/', json, (req, res) => {
+  People.dequeue();
+
+  return res.status(204).end();
 });
 
 module.exports = router;

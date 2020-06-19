@@ -2,7 +2,9 @@ module.exports = {
   people: [
     'Randy Lahey',
     'Trevor Cory',
-    'Jim Lahey'
+    'Jim Lahey',
+    'Daniel Sottile',
+    'Cesar Morales'
   ],
 
   dogs: [
@@ -227,4 +229,4 @@ module.exports = {
       story: 'Found in neighborhood'
     }
   ]
-}
+};

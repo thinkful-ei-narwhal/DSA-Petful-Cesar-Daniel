@@ -1,0 +1,5 @@
+console.log(process.env);
+
+export default {
+  API_ENDPOINT: process.env.REACT_APP_API_KEY
+};

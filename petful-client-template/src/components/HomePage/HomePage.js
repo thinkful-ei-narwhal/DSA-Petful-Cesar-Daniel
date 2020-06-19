@@ -18,7 +18,7 @@ export class HomePage extends Component {
         for your new furry friend!</p>
 
         <h3>Adopt Here!</h3>
-        <Link className="button" to='/adopt'>Enter:</Link>
+        <Link to='/adopt'>Enter:</Link>
       </Fragment>
     )
   }

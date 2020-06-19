@@ -3,7 +3,6 @@ import config from '../config';
 const apiService = {
   getPets(){
     let error;
-    console.log(config.API_ENDPOINT);
     return fetch(`${config.API_ENDPOINT}/pets`, {
       method: 'GET',
       headers: {}
@@ -12,7 +11,6 @@ const apiService = {
         if (!res.ok) {
           error = { code: res.status};
         }
-        console.log(res);
         return res.json();
       })
       .then(data => {

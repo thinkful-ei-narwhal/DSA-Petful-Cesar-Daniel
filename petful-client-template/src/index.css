@@ -34,7 +34,7 @@ h3 {
   font-size: 40px;
 }
 
-a { 
+a, button { 
   font: bold 40px Arial;
   text-decoration: none; 
   background-color: #EEEEEE; 
@@ -44,4 +44,21 @@ a {
   border-top: 1px solid #CCCCCC; 
   border-right: 1px solid #333333; 
   border-bottom: 1px solid #333333; 
-  border-left: 1px solid #CCCCCC; }
+  border-left: 1px solid #CCCCCC; 
+}
+
+.pet-container {
+  width: 90%;
+  margin: auto;
+  padding: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: 3px solid hotpink;
+  border-radius: 10px;
+}
+
+
+.picture {
+  width: 45%;
+}

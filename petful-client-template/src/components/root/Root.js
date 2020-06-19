@@ -6,23 +6,44 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import UserContext from '../../contexts/UserContext';
 import apiService from '../../services/apiService';
 
+const Queue = require('../../queue/Queue');
+
 export class Root extends Component {
 
   state = {
-    cats: [],
-    dogs: [],
-    people: [],
+    cats: new Queue(),
+    dogs: new Queue(),
+    people: new Queue(),
   }
 
   componentDidMount() {
     apiService.getPets()
       .then(data => {
-        console.log(data);
+        let cData = data.cats.first;
+        this.setState(this.state.cats.enqueue(cData.data))
+        let nc = cData.next;
+        while(nc) {
+          this.setState(this.state.cats.enqueue(nc.data))
+          nc = nc.next
+        }
+        let dData = data.dogs.first;
+        this.setState(this.state.dogs.enqueue(dData.data))
+        let nd = dData.next;
+        while(nd) {
+          this.setState(this.state.dogs.enqueue(nd.data))
+          nd = nd.next
+        }
       })
     
     apiService.getPeople()
       .then(data => {
-        console.log(data);
+        let pData = data.first;
+        this.setState(this.state.people.enqueue(pData.data))
+        let np = pData.next;
+        while(np) {
+          this.setState(this.state.people.enqueue(np.data))
+          np = np.next
+        }
       })
 
   }
@@ -30,7 +51,8 @@ export class Root extends Component {
   render() {
     return (
       <UserContext.Provider value = {{
-        pets: this.state.pets,
+        cats: this.state.cats,
+        dogs: this.state.dogs,
         people: this.state.people,
       }}>
         <Fragment>

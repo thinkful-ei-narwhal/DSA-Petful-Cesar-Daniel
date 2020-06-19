@@ -18,8 +18,10 @@ export class Root extends Component {
   }
 
   componentDidMount() {
+    console.log('did we make it?')
     apiService.getPets()
       .then(data => {
+        console.log('we here', data);
         let cData = data.cats.first;
         this.setState(this.state.cats.enqueue(cData.data))
         let nc = cData.next;

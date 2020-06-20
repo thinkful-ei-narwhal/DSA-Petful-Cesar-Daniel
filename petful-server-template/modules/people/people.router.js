@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 router.post('/', json, (req, res) => {
   const {name} = req.body;
-  const newPerson = {name};
+  const newPerson = name;
   for (const [key, value] of Object.entries(newPerson))
   // eslint-disable-next-line eqeqeq
     if (value == null) {
